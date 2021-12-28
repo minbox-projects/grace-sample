@@ -1,0 +1,7 @@
+
+logging:
+  level:
+    org.minbox.framework.grace: debug
+spring:
+  main:
+    allow-circular-references: true
