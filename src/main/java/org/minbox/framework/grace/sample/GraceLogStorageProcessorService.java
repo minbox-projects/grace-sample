@@ -13,6 +13,6 @@ import org.springframework.stereotype.Service;
 public class GraceLogStorageProcessorService implements GraceLogStorageProcessor {
     @Override
     public void storage(GraceLogObject graceLogObject) {
-        log.info("日志内容：{}", graceLogObject.getContent());
+        log.info("位置：{}，日志内容：{}", graceLogObject.getGeneratedLocation(), graceLogObject.getContent());
     }
 }

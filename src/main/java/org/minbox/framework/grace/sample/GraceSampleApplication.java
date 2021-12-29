@@ -6,12 +6,15 @@ import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.AutoConfigurationPackages;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.expression.AnnotatedElementKey;
 import org.springframework.context.expression.BeanFactoryResolver;
+
+import java.util.List;
 
 @SpringBootApplication
 @Configuration
@@ -26,7 +29,8 @@ public class GraceSampleApplication implements CommandLineRunner {
 
     @Bean
     ExpressionFunctionFactory expressionFunctionFactory() {
-        return new ExpressionFunctionFactory();
+        List<String> basePackages = AutoConfigurationPackages.get(beanFactory);
+        return new ExpressionFunctionFactory(basePackages);
     }
 
     @Override
@@ -46,9 +50,9 @@ public class GraceSampleApplication implements CommandLineRunner {
         //result = evaluator.parseExpression("你好啊 {#getUserName(#userId)}", elementKey, context);
         //     result = evaluator.parseExpression(String.class,"{@testService.getUserName(#userId)}", elementKey, context);
         //System.out.println(result);
-        result = evaluator.parseExpression(String.class,"{#reverseString(#userId)}", elementKey, context);
+        result = evaluator.parseExpression(String.class, "{#reverseString(#userId)}", elementKey, context);
         System.out.println(result);
-        result = evaluator.parseExpression(String.class,"{#reverseString(#userId)}", elementKey, context);
+        result = evaluator.parseExpression(String.class, "{#reverseString(#userId)}", elementKey, context);
         System.out.println(result);
     }
 }

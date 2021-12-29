@@ -14,7 +14,7 @@ import java.util.List;
 @Service
 @GraceFunctionDefiner
 public class TestService {
-    @GraceRecorder(condition = "{#result!=null}", success = "参数：{#p0}，返回结果：{#result}", category = "getUserName")
+    @GraceRecorder(condition = "{#result!=null and #age>10}", success = "参数：{#p0}，返回结果：{#result}", category = "getUserName")
     public String getUserName(String userId) {
         if (userId.equals("11")) {
             throw new RuntimeException("");
