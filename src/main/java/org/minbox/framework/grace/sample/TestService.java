@@ -12,7 +12,6 @@ import java.util.List;
  * @author 恒宇少年
  */
 @Service
-@GraceFunctionDefiner
 public class TestService {
     @GraceRecorder(condition = "{#result!=null and #age>10}", success = "参数：{#p0}，返回结果：{#result}", category = "getUserName")
     public String getUserName(String userId) {
@@ -29,14 +28,5 @@ public class TestService {
             userIdList.add(userId + i);
         }
         return userIdList;
-    }
-
-    @GraceFunction
-    public static String reverseString(String input) {
-        StringBuilder backwards = new StringBuilder();
-        for (int i = 0; i < input.length(); i++) {
-            backwards.append(input.charAt(input.length() - 1 - i));
-        }
-        return backwards.toString();
     }
 }
