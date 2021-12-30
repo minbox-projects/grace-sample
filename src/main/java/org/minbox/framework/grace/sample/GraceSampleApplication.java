@@ -14,6 +14,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.context.expression.AnnotatedElementKey;
 import org.springframework.context.expression.BeanFactoryResolver;
 
+import java.util.Arrays;
 import java.util.List;
 
 @SpringBootApplication
@@ -30,6 +31,7 @@ public class GraceSampleApplication implements CommandLineRunner {
     @Bean
     ExpressionFunctionFactory expressionFunctionFactory() {
         List<String> basePackages = AutoConfigurationPackages.get(beanFactory);
+        Arrays.asList("org.minbox.framework.grace.sample","com.yuqiyu");
         return new ExpressionFunctionFactory(basePackages);
     }
 
